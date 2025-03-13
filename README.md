@@ -1,2 +1,2 @@
 # Jackplot
-Drawing a plot of polymonial in jack language
+Drawing a plot of polynomial in jack language
