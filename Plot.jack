@@ -1,3 +1,4 @@
+// просто замеч
 class Plot {
     field int x;
     field int y;
@@ -15,6 +16,35 @@ class Plot {
     method void drawCross ( ) {
         do Screen.drawLine(x + width / 2, y + height, x + width / 2, y);
         do Screen.drawLine(x, y + height / 2, x + width, y + height / 2);
+        return;
+    }
+
+    method void drawArrowUp (int posX, int posY, int length) {
+        var int i;
+        let i = 1;
+        while (i < 4) {
+            do Screen.drawLine(posX + i, posY + i, posX + i, posY + length + i);
+            do Screen.drawLine(posX - i, posY + i, posX - i, posY + length + i);
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void drawArrowRight (int posX, int posY, int length) {
+        var int i;
+        let i = 1;
+        while (i < 4) {
+            do Screen.drawLine(posX - i, posY + i, posX - i - length, posY + i);
+            do Screen.drawLine(posX - i, posY - i, posX - i - length, posY - i);
+            let i = i + 1;
+        }
+        return;
+    }
+
+    method void drawBase ( ) {
+        do drawCross();
+        do drawArrowUp(x + width / 2, y, 10);
+        do drawArrowRight(x + width, y + height / 2, 10);
         return;
     }
 
