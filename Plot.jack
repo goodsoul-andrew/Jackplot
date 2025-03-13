@@ -1,0 +1,23 @@
+class Plot {
+    field int x;
+    field int y;
+    field int width;
+    field int height;
+
+    constructor Plot new(int x_, int y_, int width_, int height_) {
+        let x = x_;
+        let y = y_;
+        let width = width_;
+        let height = height_;
+        return this;
+    }
+
+    method void draw ( ) {
+        var int xAxisYStart;
+        var int yAxisYStart;
+        //let xAxisYStart = y + width / 2;
+        do Screen.drawLine(x + width / 2, y + height, x + width / 2, y);
+        //do Screen.Draw(0, 0, 100 / 2, 100);
+        return;
+    }
+}
