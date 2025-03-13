@@ -12,12 +12,10 @@ class Plot {
         return this;
     }
 
-    method void draw ( ) {
-        var int xAxisYStart;
-        var int yAxisYStart;
-        //let xAxisYStart = y + width / 2;
+    method void drawCross ( ) {
         do Screen.drawLine(x + width / 2, y + height, x + width / 2, y);
-        //do Screen.Draw(0, 0, 100 / 2, 100);
+        do Screen.drawLine(x, y + height / 2, x + width, y + height / 2);
         return;
     }
+
 }
