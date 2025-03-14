@@ -1,5 +1,21 @@
 class Main {
     function void main ( ) {
+        var Parser parser;
+        var String input;
+        var Plot plot;
+        var scale scale;
+        var Calculator calculator;
+
+        let input = "";
+        let parser = Parser.new();
+        let scale = 20;
+        while (true) {
+            if (input.length() = 0) {
+                let input = Keyboard.readLine("");
+                let calculator = Calculator.new(parser.parseToModifiedArray(input));
+                
+            }
+        }
         return;
     }
 }

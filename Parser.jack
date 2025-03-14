@@ -72,4 +72,39 @@ class Parser{
         do result_list.dispose();
         return result;
     }
+
+    method ModifiedArray parseToModifiedArray ( String input ) {
+        var StringMethods sm;
+        var Array parts, terms, result;
+        var IntList result_list;
+        var String term, str;
+        var int multiplier, degree, i, terms_len, result_len;
+
+        let result_list = IntList.new();
+        let result_len = 0;
+        let str = sm.Replace(input, " ", "");
+        let str = sm.Replace(str, "-", "+-");
+        let terms_len = sm.Count(str, "+") + 1;
+        let terms = sm.Split(str, "+");
+        let i = 0;
+        let result_len = 0;
+        while(i < terms_len){
+            let term = terms[i];
+            if (term.length() > 0){
+                let parts = parseTerm(term);
+                let multiplier = parts[0];
+                let degree = parts[1];
+                while(~(degree < result_len)){
+                    do result_list.add(0);
+                    let result_len = result_len + 1;
+                }
+                let multiplier = multiplier + result_list.takeAtIndex(degree);
+                do result_list.changeAtIndex(degree, multiplier);
+            }
+            let i = i + 1;
+        }
+        let result = result_list.toModifiedArray();
+        do result_list.dispose();
+        return result;
+    }
 }
