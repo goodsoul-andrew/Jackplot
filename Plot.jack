@@ -78,25 +78,23 @@ class Plot {
         return (-3 * (x * x / s) * (x / s)) + (x * (x / s)) - (1 * s);
     }
 
-    method void drawFunction (int scale) {
+    method void drawFunction (int scale, Calculator calculator) {
         var int actualX;
         var int actualY;
         var int matX;
         var int matY;
         
         let actualX = x;
-        //do Output.printString("0123456789");
         while (actualX < endX) {
             let matX = actualX - zeroX;
-            let matY = _test_func(matX, scale);
+            //let matY = _test_func(matX, scale);
+            let matY = calculator.CalculateYInScale(matX, scale)
             let actualY = zeroY - matY;
             if (isOnScreen(actualX, actualY)) {
                 do Screen.drawPixel(actualX, actualY);
             }
             let actualX = actualX + 1;
         }
-        //do Output.printInt(zeroX);
-        //do Output.printInt(_test_func(50, 100));
         return;
     }
 
