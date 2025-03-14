@@ -4,18 +4,30 @@ class Plot {
     field int y;
     field int width;
     field int height;
+    field int midX;
+    field int midY;
+    field int endX;
+    field int endY;
+    field int zeroX;
+    field int zeroY;
 
     constructor Plot new(int x_, int y_, int width_, int height_) {
         let x = x_;
         let y = y_;
         let width = width_;
         let height = height_;
+        let midX = x + width / 2;
+        let midY = y + height / 2;
+        let endX = x + width;
+        let endY = y + height;
+        let zeroX = midX;
+        let zeroY = midY;
         return this;
     }
 
     method void drawCross ( ) {
-        do Screen.drawLine(x + width / 2, y + height, x + width / 2, y);
-        do Screen.drawLine(x, y + height / 2, x + width, y + height / 2);
+        do Screen.drawLine(midX, y, midX, endY);
+        do Screen.drawLine(x, midY, endX, midY);
         return;
     }
 
@@ -43,9 +55,68 @@ class Plot {
 
     method void drawBase ( ) {
         do drawCross();
-        do drawArrowUp(x + width / 2, y, 10);
-        do drawArrowRight(x + width, y + height / 2, 10);
+        do drawArrowUp(midX, y, 10);
+        do drawArrowRight(x + width, midY, 10);
         return;
     }
 
+    method boolean isOnScreen ( int px, int py ) {
+        return (x < px) & (px < endX) & (y < py) & (py < endY);
+    }
+
+    method int abs(int x) {
+        if (x < 0) {
+            return -x;
+        }
+        return x;
+    }
+
+    method int _test_func (int x, int s) { // -3x^3 + x^2 - 1
+        if (abs(x) < s) {
+            return (-3 * (x * x / s * x) / (1 * s)) + ((x * x) / s) - (1 * s);
+        }
+        return (-3 * (x * x / s) * (x / s)) + (x * (x / s)) - (1 * s);
+    }
+
+    method void drawFunction (int scale) {
+        var int actualX;
+        var int actualY;
+        var int matX;
+        var int matY;
+        
+        let actualX = x;
+        //do Output.printString("0123456789");
+        while (actualX < endX) {
+            let matX = actualX - zeroX;
+            let matY = _test_func(matX, scale);
+            let actualY = zeroY - matY;
+            if (isOnScreen(actualX, actualY)) {
+                do Screen.drawPixel(actualX, actualY);
+            }
+            let actualX = actualX + 1;
+        }
+        //do Output.printInt(zeroX);
+        //do Output.printInt(_test_func(50, 100));
+        return;
+    }
+
+    method void moveRight (int s) {
+        let zeroX = zeroX - s;
+        return;
+    }
+
+    method void moveLeft (int s) {
+        let zeroX = zeroX + s;
+        return;
+    }
+
+    method void moveUp (int s) {
+        let zeroY = zeroY + s;
+        return;
+    }
+
+    method void moveDown (int s) {
+        let zeroY = zeroY - s;
+        return;
+    }
 }
