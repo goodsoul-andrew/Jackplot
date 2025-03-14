@@ -1,0 +1,18 @@
+class ModifiedArray {
+    field Array data;
+    field int length;
+
+    constructor ModifiedArray new(int length_) {
+        let length = length_;
+        let data = Array.new(length);
+        return this;
+    }
+
+    method Array GetData() {
+        return data;
+    }
+
+    method int GetLength() {
+        return length;
+    }
+}
