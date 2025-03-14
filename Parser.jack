@@ -39,7 +39,7 @@ class Parser{
     }
 
     method Array parse(String input){
-    var StringMethods sm;
+        var StringMethods sm;
         var Array parts, terms, result;
         var IntList result_list;
         var String term, str;
