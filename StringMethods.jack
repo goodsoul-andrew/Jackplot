@@ -1,0 +1,137 @@
+class StringMethods {
+
+    method boolean Contains(String input, String required){
+        var int i, j, input_length, required_length;
+
+        let i = 0;
+        let j = 0;
+        let input_length = input.length();
+        let required_length = required.length();
+        while(i < input_length){
+            if (required.charAt(j) = input.charAt(i)){
+                let j = j + 1;
+                if (j = required_length){
+                    return true;
+                }
+            }
+            else{
+                let j = 0;
+            }
+            let i = i + 1;
+        }
+        return false;
+    }
+
+    method int Count(String input, String required){
+        var int i, j, input_length, required_length, count;
+
+        let i = 0;
+        let j = 0;
+        let input_length = input.length();
+        let required_length = required.length();
+        let count = 0;
+        while(i < input_length){
+            if (required.charAt(j) = input.charAt(i)){
+                let j = j + 1;
+                if (j = required_length){
+                    let count = count + 1;
+                    let j = 0;
+                }
+            }
+            else{
+                let j = 0;
+            }
+            let i = i + 1;
+        }
+        return count;
+    }
+
+    method String Replace(String input, String replaced, String replacing){
+        var int input_len, replacing_len, replaced_len, i, j, k;
+        var String result;
+        var CharList list;
+
+        let list = CharList.new();
+        let input_len = input.length();
+        let replaced_len = replaced.length();
+        let replacing_len = replacing.length();
+        let i = 0;
+        let j = 0;
+        let k = 0;
+
+        while (i < input_len){
+            do list.add(input.charAt(i));
+
+            if (input.charAt(i) = replaced.charAt(j)){
+                let j = j + 1;
+
+                if (j = replaced_len){
+                    while (j > 0){
+                        do list.removeAtLast();
+                        let j = j - 1;
+                    }
+                    let k = 0;
+                    while (k < replacing_len){
+                        do list.add(replacing.charAt(k));
+                        let k = k + 1;
+                    }
+                    let j = 0;
+                }
+            }
+            else{
+                let j = 0;
+            }
+            let i = i + 1;
+        }
+        let result = list.toString();
+        do list.dispose();
+        return result;
+    }
+
+    method Array Split(String input, String separator){
+        var int input_len, separator_len, i, j;
+        var Array result;
+        var CharList charList;
+        var StringList stringList;
+
+        let charList = CharList.new();
+        let stringList = StringList.new();
+        let input_len = input.length();
+        let separator_len = separator.length();
+        let i = 0;
+        let j = 0;
+
+        while (i < input_len){
+            do charList.add(input.charAt(i));
+
+            if (input.charAt(i) = separator.charAt(j)){
+                let j = j + 1;
+                if (j = separator_len){
+                    while (j > 0){
+                        do charList.removeAtLast();
+                        let j = j - 1;
+                    }
+                    do stringList.add(charList.toString());
+                    do charList.dispose();
+                    let charList = CharList.new();
+                }
+            }
+            else{
+                let j = 0;
+            }
+            let i = i + 1;
+        }
+
+        if (j = separator_len){
+            while (~(j = 0)){
+                do charList.removeAtLast();
+                let j = j - 1;
+            }
+        }
+        do stringList.add(charList.toString());
+        do charList.dispose();
+        let result = stringList.toArray();
+        do stringList.dispose();
+        return result;
+    }
+}

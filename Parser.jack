@@ -1,0 +1,75 @@
+class Parser{
+  
+    method Array parseTerm(String term){
+        var StringMethods sm;
+        var Array result;
+        var Array parts;
+        var String str;
+        var int multiplier, degree, i;
+
+        let multiplier = 0;
+        let degree = 0;
+        let i = 0;
+        if (sm.Contains(term, "x")){
+            if (sm.Contains(term, "x^")){
+                let parts = sm.Split(term, "x^");
+                let str = parts[1];
+                let degree = str.intValue();
+            }
+            else{
+                let parts = sm.Split(term, "x");
+                let str = parts[1];
+                let degree = 1;
+            }
+            let str = parts[0];
+            if(str.length() = 0){
+                let multiplier = 1;
+            }
+            else{
+                let multiplier = str.intValue();
+            }
+        }
+        else{
+            let multiplier = term.intValue();
+        }
+        let result = Array.new (2);
+        let result[0] = multiplier;
+        let result[1] = degree;
+        return result;
+    }
+
+    method Array parse(String input){
+    var StringMethods sm;
+        var Array parts, terms, result;
+        var IntList result_list;
+        var String term, str;
+        var int multiplier, degree, i, terms_len, result_len;
+
+        let result_list = IntList.new();
+        let result_len = 0;
+        let str = sm.Replace(input, " ", "");
+        let str = sm.Replace(str, "-", "+-");
+        let terms_len = sm.Count(str, "+") + 1;
+        let terms = sm.Split(str, "+");
+        let i = 0;
+        let result_len = 0;
+        while(i < terms_len){
+            let term = terms[i];
+            if (term.length() > 0){
+                let parts = parseTerm(term);
+                let multiplier = parts[0];
+                let degree = parts[1];
+                while(~(degree < result_len)){
+                    do result_list.add(0);
+                    let result_len = result_len + 1;
+                }
+                let multiplier = multiplier + result_list.takeAtIndex(degree);
+                do result_list.changeAtIndex(degree, multiplier);
+            }
+            let i = i + 1;
+        }
+        let result = result_list.toArray();
+        do result_list.dispose();
+        return result;
+    }
+}

@@ -1,0 +1,50 @@
+class CharListItem{
+    field char data;
+    field CharListItem next;
+    field CharListItem prev;
+    field int index;
+    
+    constructor CharListItem new(char d, CharListItem n, CharListItem p, int i){
+        let data = d;
+        let next = n;
+        let prev = p;
+        let index = i;
+        return this;
+    }
+
+    method int getIndex(){
+        return index;
+    }
+
+    method CharListItem getNext(){
+        return next;
+    }
+
+    method int getPrev(){
+        return prev;
+    }
+
+    method void setNext(CharListItem n){
+        let next = n;
+        return;
+    }
+
+    method void setPrev(CharListItem n){
+        let next = n;
+        return;
+    }
+
+    method void setData(char d){
+        let data = d;
+        return;
+    }
+
+    method char getData(){
+        return data;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}

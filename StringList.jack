@@ -1,0 +1,122 @@
+class StringList {
+    field StringListItem start;
+    field StringListItem end;
+    field int length;
+
+    constructor StringList new(){
+        let length = 0;
+        let start = null;
+        let end = null;
+        return this;
+    }
+
+    method void add(String data){
+        var StringListItem prev;
+        if (start = null){
+            let start = StringListItem.new(data, null, null, 0);
+            let end = start;
+        }
+        else{
+            let prev = end;
+            let end = StringListItem.new(data, null, end, end.getIndex() + 1);
+            do prev.setNext(end);
+        }
+        let length = length + 1;
+        return;
+    }
+
+    method void removeAtLast(){
+        var StringListItem last;
+        if (end = null){
+            return;
+            //Нужно прописать ошибку
+        }
+        if (end = start){
+            let last = end;
+            let end = null;
+            let start = null;
+            do last.dispose();
+            return;
+        }
+        let last = end;
+        let end = end.getPrev();
+        if (~(end = null)){
+            do end.setNext(null);
+        }
+        do last.dispose();
+        let length = length - 1;
+        return;
+    }
+
+    method void changeAtIndex(int i, String changed_data){
+        var StringListItem current;
+        var int current_index;
+
+        let current = start;
+        let current_index = 0;
+        if (i > length | i = length){
+            return;
+        }
+        while(current_index < i){
+            let current = current.getNext();
+            let current_index = current_index + 1;
+        }
+        do current.setData(changed_data);
+        return;
+    }
+
+    method String takeAtIndex(int i){
+        var StringListItem current;
+        var int current_index;
+
+        let current = start;
+        let current_index = 0;
+        //if (i > length | i = length){
+        //    return ;
+        //} я хз как возвращать ошибки
+        while(current_index < i){
+            let current = current.getNext();
+            let current_index = current_index + 1;
+        }
+        return current.getData();
+    }
+
+    method void dispose(){
+        var StringListItem current;
+        let current = start;
+        while (~(start = null)){
+            let start = start.getNext();
+            do current.dispose();
+            let current = start;
+        }
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void print(){
+        var StringListItem current;
+        let current = start;
+        while (~(current = null)){
+            do Output.printString(current.getData());
+            do Output.printChar(32);
+            let current = current.getNext();
+        }
+        return;
+    }
+
+    method Array toArray(){
+        var Array result;
+        var StringListItem current;
+        let result = Array.new(length);
+        let current = start;
+        while (~(current = null)){
+            let result[current.getIndex()] = current.getData();
+            let current = current.getNext();
+        }
+        return result;
+    }
+
+    method int getLength(){
+        return length;
+    }
+}

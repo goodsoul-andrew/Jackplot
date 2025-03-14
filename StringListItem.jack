@@ -1,0 +1,50 @@
+class StringListItem{
+    field String data;
+    field StringListItem next;
+    field StringListItem prev;
+    field int index;
+
+    constructor StringListItem new(String d, StringListItem n, StringListItem p, int i){
+        let data = d;
+        let next = n;
+        let prev = p;
+        let index = i;
+        return this;
+    }
+
+    method int getIndex(){
+        return index;
+    }
+
+    method StringListItem getNext(){
+        return next;
+    }
+
+    method int getPrev(){
+        return prev;
+    }
+
+    method void setNext(StringListItem n){
+        let next = n;
+        return;
+    }
+
+    method void setPrev(StringListItem n){
+        let next = n;
+        return;
+    }
+
+    method void setData(String d){
+        let data = d;
+        return;
+    }
+
+    method String getData(){
+        return data;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}
