@@ -22,16 +22,16 @@ class Main {
             let key = 0;
             while ((key < 140) | (key > 140)) {
                 let key = Keyboard.keyPressed();
-                if (key = 65) { // key == 'A'
+                if ((key = 65) | (key = 97)) { // key == 'A' | key == 'a'
                     do plot.moveLeft(10);
                 }
-                if (key = 68) { // key == 'D'
+                if ((key = 68) | (key = 100)) { // key == 'D' | key == 'd'
                     do plot.moveRight(10);
                 }
-                if (key = 87) { // key == 'W'
+                if ((key = 87) | (key = 119)) { // key == 'W'| key == 'w'
                     do plot.moveUp(10);
                 }
-                if (key = 83) { // key == 'S'
+                if ((key = 83) | (key = 115)) { // key == 'S' | key == 's'
                     do plot.moveDown(10);
                 }
                 if (key = 43) { // key == '+'
