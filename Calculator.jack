@@ -21,10 +21,10 @@ class Calculator {
           let result = 0;
           while (true) {
                if (degree < 1) {
-                    let result = result + Math.multiply(coefsArray[polynomDegree - degree], p);
+                    let result = result + Math.multiply(coefsArray[degree], p);
                     return result;
                }
-               let result = result + Math.divide(Math.multiply(coefsArray[polynomDegree - degree], Calculator.pow(x, degree)), Calculator.pow(p, degree - 1));
+               let result = result + Math.divide(Math.multiply(coefsArray[degree], Calculator.pow(x, degree)), Calculator.pow(p, degree - 1));
                let degree = degree - 1;
           }
           return result;
