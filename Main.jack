@@ -44,6 +44,8 @@ class Main {
                 }
 
                 if (key = 139) { // key == 'DEL' новый график
+                    do calculator.dispose();
+                    do input.dispose();
                     do Output.moveCursor(0, 0);
                 }
                 let firstDraw = false;

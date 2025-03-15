@@ -12,7 +12,13 @@ class ModifiedArray {
         return data;
     }
 
-    method int getLength() {
+    method int length() {
         return length;
+    }
+
+    method void dispose () {
+        do data.dispose();
+        do Memory.deAlloc(this);
+        return;
     }
 }
