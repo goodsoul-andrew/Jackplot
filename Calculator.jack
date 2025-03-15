@@ -17,6 +17,7 @@ class Calculator {
      method int calculateYInScale( int x, int p) {
           var int degree;
           var int result;
+          
           let degree = polynomDegree;
           let result = 0;
           while (true) {
