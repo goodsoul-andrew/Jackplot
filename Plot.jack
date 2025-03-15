@@ -64,20 +64,6 @@ class Plot {
         return (x < px) & (px < endX) & (y < py) & (py < endY);
     }
 
-    method int abs(int x) {
-        if (x < 0) {
-            return -x;
-        }
-        return x;
-    }
-
-    method int test_func (int x, int s) { // -3x^3 + x^2 - 1
-        if (abs(x) < s) {
-            return (-3 * (x * x / s * x) / (1 * s)) + ((x * x) / s) - (1 * s);
-        }
-        return (-3 * (x * x / s) * (x / s)) + (x * (x / s)) - (1 * s);
-    }
-
     method void drawFunction (int scale, Calculator calculator) {
         var int actualX;
         var int actualY;
