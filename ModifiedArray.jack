@@ -8,11 +8,11 @@ class ModifiedArray {
         return this;
     }
 
-    method Array GetData() {
+    method Array getData() {
         return data;
     }
 
-    method int GetLength() {
+    method int length() {
         return length;
     }
 }

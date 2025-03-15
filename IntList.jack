@@ -71,9 +71,9 @@ class IntList {
 
         let current = start;
         let current_index = 0;
-        //if (i > length | i = length){
-        //    return ;
-        //} я хз как возвращать ошибки
+        if (i > length | i = length){
+            do Sys.error(15);
+        }
         while(current_index < i){
             let current = current.getNext();
             let current_index = current_index + 1;
@@ -110,9 +110,11 @@ class IntList {
         let result = Array.new(length);
         let current = start;
         while (~(current = null)){
+            //do Output.printInt(current.getData());
             let result[current.getIndex()] = current.getData();
             let current = current.getNext();
         }
+        do Output.printString(" ");
         return result;
     }
     
@@ -123,11 +125,14 @@ class IntList {
     method ModifiedArray toModifiedArray() {
         var ModifiedArray result;
         var StringListItem current;
+        var Array resultData;
 
         let result = ModifiedArray.new(length);
         let current = start;
         while (~(current = null)){
-            let result.getData()[current.getIndex()] = current.getData();
+            let resultData = result.getData(); 
+            let resultData[current.getIndex()] = current.getData();
+            //do Output.printInt(current.getData());
             let current = current.getNext();
         }
         return result;

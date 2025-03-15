@@ -3,18 +3,56 @@ class Main {
         var Parser parser;
         var String input;
         var Plot plot;
+        var Array test;
         var scale scale;
+        var char key;
+        var boolean firstDraw;
         var Calculator calculator;
 
         let input = "";
-        let parser = Parser.new();
-        let scale = 20;
         while (true) {
-            if (input.length() = 0) {
-                let input = Keyboard.readLine("");
-                let calculator = Calculator.new(parser.parseToModifiedArray(input));
-                
+            let input = Keyboard.readLine("");
+            let test = parser.parse(input);
+            //do Output.printString(input);
+            let calculator = Calculator.new(parser.parseToModifiedArray(input));
+            let plot = Plot.new(0, 6, 511, 249);
+            let firstDraw = true;
+            let scale = 20;
+            let key = 0;
+            while ((key < 140) | (key > 140)) {
+                let key = Keyboard.keyPressed();
+                if (key = 65) { // key == 'A'
+                    do plot.moveLeft(10);
+                }
+                if (key = 68) { // key == 'D'
+                    do plot.moveRight(10);
+                }
+                if (key = 87) { // key == 'W'
+                    do plot.moveUp(10);
+                }
+                if (key = 83) { // key == 'S'
+                    do plot.moveDown(10);
+                }
+                if (key = 43) { // key == '+'
+                    let scale = scale + 10;
+                }
+                if ((key = 45) & (scale > 10)) { // key == '-'
+                    let scale = scale - 10;
+                }
+
+                if ((key > 0) | firstDraw) {
+                    do Screen.clearScreen();
+                    do plot.drawBase();
+                    do plot.drawFunction(scale, calculator);
+                }
+
+                if (key = 140) {
+                    do Output.moveCursor(0, 0);
+                    do Output.backSpace();
+                }
+                let firstDraw = false;
             }
+            do Screen.clearScreen();
         }
         return;
     }

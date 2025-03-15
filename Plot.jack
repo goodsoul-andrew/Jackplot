@@ -87,8 +87,7 @@ class Plot {
         let actualX = x;
         while (actualX < endX) {
             let matX = actualX - zeroX;
-            //let matY = _test_func(matX, scale);
-            let matY = calculator.CalculateYInScale(matX, scale)
+            let matY = calculator.CalculateYInScale(matX, scale);
             let actualY = zeroY - matY;
             if (isOnScreen(actualX, actualY)) {
                 do Screen.drawPixel(actualX, actualY);

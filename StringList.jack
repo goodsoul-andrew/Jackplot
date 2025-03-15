@@ -119,17 +119,4 @@ class StringList {
     method int getLength(){
         return length;
     }
-
-    method ModifiedArray toModifiedArray() {
-        var ModifiedArray result;
-        var StringListItem current;
-
-        let result = ModifiedArray.new(length);
-        let current = start;
-        while (~(current = null)){
-            let result.getData()[current.getIndex()] = current.getData();
-            let current = current.getNext();
-        }
-        return result;
-    }
 }

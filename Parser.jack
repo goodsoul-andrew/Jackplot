@@ -75,7 +75,8 @@ class Parser{
 
     method ModifiedArray parseToModifiedArray ( String input ) {
         var StringMethods sm;
-        var Array parts, terms, result;
+        var Array parts, terms;
+        var ModifiedArray result;
         var IntList result_list;
         var String term, str;
         var int multiplier, degree, i, terms_len, result_len;
