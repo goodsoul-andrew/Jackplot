@@ -71,7 +71,7 @@ class Plot {
         return x;
     }
 
-    method int _test_func (int x, int s) { // -3x^3 + x^2 - 1
+    method int test_func (int x, int s) { // -3x^3 + x^2 - 1
         if (abs(x) < s) {
             return (-3 * (x * x / s * x) / (1 * s)) + ((x * x) / s) - (1 * s);
         }
@@ -88,7 +88,7 @@ class Plot {
         while (actualX < endX) {
             let matX = actualX - zeroX;
             //let matY = _test_func(matX, scale);
-            let matY = calculator.CalculateYInScale(matX, scale)
+            let matY = calculator.calculateYInScale(matX, scale);
             let actualY = zeroY - matY;
             if (isOnScreen(actualX, actualY)) {
                 do Screen.drawPixel(actualX, actualY);

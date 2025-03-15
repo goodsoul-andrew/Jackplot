@@ -123,11 +123,13 @@ class IntList {
     method ModifiedArray toModifiedArray() {
         var ModifiedArray result;
         var StringListItem current;
+        var Array arr;
 
         let result = ModifiedArray.new(length);
         let current = start;
         while (~(current = null)){
-            let result.getData()[current.getIndex()] = current.getData();
+            let arr = result.getData();
+            let arr[current.getIndex()] = current.getData();
             let current = current.getNext();
         }
         return result;
