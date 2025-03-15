@@ -4,7 +4,7 @@ class Main {
         var String input;
         var Plot plot;
         var Array test;
-        var scale scale;
+        var int scale;
         var char key;
         var boolean firstDraw;
         var Calculator calculator;
@@ -12,6 +12,7 @@ class Main {
         let input = "";
         while (true) {
             let input = Keyboard.readLine("");
+            //let input = "-x^11    + 5x^5 + x - 3 - 3x^5 + 12x^12 - 0x^2";
             let test = parser.parse(input);
             //do Output.printString(input);
             let calculator = Calculator.new(parser.parseToModifiedArray(input));
