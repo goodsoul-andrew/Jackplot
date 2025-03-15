@@ -12,7 +12,7 @@ class ModifiedArray {
         return data;
     }
 
-    method int length() {
+    method int getLength() {
         return length;
     }
 }

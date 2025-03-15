@@ -5,16 +5,16 @@ class Calculator {
      
      constructor Calculator new(ModifiedArray coefs) {
           let polynomCoefs = coefs;
-          let polynomDegree = polynomCoefs.length() - 1;
+          let polynomDegree = polynomCoefs.getLength() - 1;
           let coefsArray = polynomCoefs.getData();
           return this;
      }
 
      method int calculateY ( int x ) {
-         return CalculateYInScale(x, 1);
+         return calculateYInScale(x, 1);
      }
 
-     method int CalculateYInScale( int x, int p) {
+     method int calculateYInScale( int x, int p) {
           var int degree;
           var int result;
           let degree = polynomDegree;
@@ -24,17 +24,17 @@ class Calculator {
                     let result = result + Math.multiply(coefsArray[polynomDegree - degree], p);
                     return result;
                }
-               let result = result + Math.divide(Math.multiply(coefsArray[polynomDegree - degree], Calculator.Pow(x, degree)), Calculator.Pow(p, degree - 1));
+               let result = result + Math.divide(Math.multiply(coefsArray[polynomDegree - degree], Calculator.pow(x, degree)), Calculator.pow(p, degree - 1));
                let degree = degree - 1;
           }
           return result;
      }
 
-     method ModifiedArray GetCoefs() {
+     method ModifiedArray getCoefs() {
           return polynomCoefs;
      }
 
-     function int Pow ( int base, int degree ) {
+     function int pow ( int base, int degree ) {
           var int index;
           var int result;
           let index = 0;
