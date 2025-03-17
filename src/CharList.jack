@@ -28,8 +28,7 @@ class CharList {
     method void removeAtLast(){
         var CharListItem last;
         if (end = null){
-            return;
-            //Нужно прописать ошибку
+            do Sys.error(18);
         }
         if (end = start){
             let last = end;

@@ -33,6 +33,7 @@ class Plot {
 
     method void drawArrowUp (int posX, int posY, int length) {
         var int i;
+
         let i = 1;
         while (i < 4) {
             do Screen.drawLine(posX + i, posY + i, posX + i, posY + length + i);
@@ -44,6 +45,7 @@ class Plot {
 
     method void drawArrowRight (int posX, int posY, int length) {
         var int i;
+        
         let i = 1;
         while (i < 4) {
             do Screen.drawLine(posX - i, posY + i, posX - i - length, posY + i);

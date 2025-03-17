@@ -12,6 +12,7 @@ class IntList {
 
     method void add(int data){
         var IntListItem prev;
+        
         if (start = null){
             let start = IntListItem.new(data, null, null, 0);
             let end = start;
@@ -27,9 +28,9 @@ class IntList {
 
     method void removeAtLast(){
         var IntListItem last;
+
         if (end = null){
-            return;
-            //Нужно прописать ошибку
+            do Sys.error(18);
         }
         if (end = start){
             let last = end;
@@ -83,6 +84,7 @@ class IntList {
 
     method void dispose(){
         var IntListItem current;
+
         let current = start;
         while (~(start = null)){
             let start = start.getNext();
@@ -95,6 +97,7 @@ class IntList {
 
     method void print(){
         var IntListItem current;
+
         let current = start;
         while (~(current = null)){
             do Output.printInt(current.getData());
@@ -107,6 +110,7 @@ class IntList {
     method Array toArray(){
         var Array result;
         var StringListItem current;
+
         let result = Array.new(length);
         let current = start;
         while (~(current = null)){

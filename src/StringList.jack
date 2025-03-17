@@ -12,6 +12,7 @@ class StringList {
 
     method void add(String data){
         var StringListItem prev;
+
         if (start = null){
             let start = StringListItem.new(data, null, null, 0);
             let end = start;
@@ -27,6 +28,7 @@ class StringList {
 
     method void removeAtLast(){
         var StringListItem last;
+
         if (end = null){
             do Sys.error(18);
         }
@@ -82,6 +84,7 @@ class StringList {
 
     method void dispose(){
         var StringListItem current;
+
         let current = start;
         while (~(start = null)){
             let start = start.getNext();
@@ -94,6 +97,7 @@ class StringList {
 
     method void print(){
         var StringListItem current;
+
         let current = start;
         while (~(current = null)){
             do Output.printString(current.getData());
@@ -106,6 +110,7 @@ class StringList {
     method Array toArray(){
         var Array result;
         var StringListItem current;
+        
         let result = Array.new(length);
         let current = start;
         while (~(current = null)){
