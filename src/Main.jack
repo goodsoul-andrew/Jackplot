@@ -3,35 +3,31 @@ class Main {
         var Parser parser;
         var String input;
         var Plot plot;
-        var Array test;
         var int scale;
         var char key;
         var boolean firstDraw;
         var Calculator calculator;
 
-        let input = "";
-        while (true) {
+        let key = 0;
+        let plot = Plot.new(0, 6, 511, 249);
+        while ((key < 140) | (key > 140)) {
             let input = Keyboard.readLine("");
-            //let input = "-x^11    + 5x^5 + x - 3 - 3x^5 + 12x^12 - 0x^2";
-            let test = parser.parse(input);
-            //do Output.printString(input);
             let calculator = Calculator.new(parser.parseToModifiedArray(input));
-            let plot = Plot.new(0, 6, 511, 249);
             let firstDraw = true;
             let scale = 20;
             let key = 0;
-            while ((key < 140) | (key > 140)) {
+            while (((key < 139) | (key > 139)) & ((key < 140) | (key > 140))) { // while (key != 'DEL' & key != 'ESC')
                 let key = Keyboard.keyPressed();
-                if (key = 65) { // key == 'A'
+                if ((key = 65) | (key = 97) | (key = 130)) { // key == 'A' | key == 'a' | key == '←'
                     do plot.moveLeft(10);
                 }
-                if (key = 68) { // key == 'D'
+                if ((key = 68) | (key = 100) | (key = 132)) { // key == 'D' | key == 'd' | key == '→'
                     do plot.moveRight(10);
                 }
-                if (key = 87) { // key == 'W'
+                if ((key = 87) | (key = 119) | (key = 131)) { // key == 'W'| key == 'w' | key == '↑'
                     do plot.moveUp(10);
                 }
-                if (key = 83) { // key == 'S'
+                if ((key = 83) | (key = 115) | (key = 133)) { // key == 'S' | key == 's' | key == '↓'
                     do plot.moveDown(10);
                 }
                 if (key = 43) { // key == '+'
@@ -47,9 +43,10 @@ class Main {
                     do plot.drawFunction(scale, calculator);
                 }
 
-                if (key = 140) {
+                if (key = 139) { // key == 'DEL' новый график
+                    do calculator.dispose();
+                    do input.dispose();
                     do Output.moveCursor(0, 0);
-                    do Output.backSpace();
                 }
                 let firstDraw = false;
             }

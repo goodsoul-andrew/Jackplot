@@ -5,7 +5,7 @@ class Calculator {
      
      constructor Calculator new(ModifiedArray coefs) {
           let polynomCoefs = coefs;
-          let polynomDegree = polynomCoefs.getLength() - 1;
+          let polynomDegree = polynomCoefs.length() - 1;
           let coefsArray = polynomCoefs.getData();
           return this;
      }
@@ -17,6 +17,7 @@ class Calculator {
      method int calculateYInScale( int x, int p) {
           var int degree;
           var int result;
+          
           let degree = polynomDegree;
           let result = 0;
           while (true) {
@@ -24,7 +25,8 @@ class Calculator {
                     let result = result + Math.multiply(coefsArray[degree], p);
                     return result;
                }
-               let result = result + Math.divide(Math.multiply(coefsArray[degree], Calculator.pow(x, degree)), Calculator.pow(p, degree - 1));
+               //let result = result + Math.divide(Math.multiply(coefsArray[degree], Calculator.pow(x, degree)), Calculator.pow(p, degree - 1));
+               let result = result + (coefsArray[degree] * Calculator.pow(x, degree) / Calculator.pow(p, degree - 1));
                let degree = degree - 1;
           }
           return result;
@@ -40,9 +42,23 @@ class Calculator {
           let index = 0;
           let result = 1;
           while (index < degree) {
-               let result = Math.multiply(result, base);
+               let result = result * base;
                let index = index + 1;
           }
           return result;
+     }
+
+     function int abs(int x) {
+        if (x < 0) {
+            return -x;
+        }
+        return x;
+     }
+
+     method void dispose () {
+          do polynomCoefs.dispose();
+          do coefsArray.dispose();
+          do Memory.deAlloc(this);
+          return;
      }
 }

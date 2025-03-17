@@ -110,7 +110,6 @@ class IntList {
         let result = Array.new(length);
         let current = start;
         while (~(current = null)){
-            //do Output.printInt(current.getData());
             let result[current.getIndex()] = current.getData();
             let current = current.getNext();
         }
@@ -118,7 +117,7 @@ class IntList {
         return result;
     }
     
-    method int getLength(){
+    method int length(){
         return length;
     }
 

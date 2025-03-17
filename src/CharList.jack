@@ -71,9 +71,9 @@ class CharList {
 
         let current = start;
         let current_index = 0;
-        //if (i > length | i = length){
-        //    return ;
-        //} я хз как возвращать ошибки
+        if (i > length | i = length){
+            do Sys.error(15);
+        }
         while(current_index < i){
             let current = current.getNext();
             let current_index = current_index + 1;
@@ -116,7 +116,7 @@ class CharList {
         return result;
     }
 
-    method int getLength(){
+    method int length(){
         return length;
     }
 }

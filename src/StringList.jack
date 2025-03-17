@@ -28,8 +28,7 @@ class StringList {
     method void removeAtLast(){
         var StringListItem last;
         if (end = null){
-            return;
-            //Нужно прописать ошибку
+            do Sys.error(18);
         }
         if (end = start){
             let last = end;
@@ -71,9 +70,9 @@ class StringList {
 
         let current = start;
         let current_index = 0;
-        //if (i > length | i = length){
-        //    return ;
-        //} я хз как возвращать ошибки
+        if (i > length | i = length){
+            do Sys.error(15);
+        }
         while(current_index < i){
             let current = current.getNext();
             let current_index = current_index + 1;
@@ -116,7 +115,7 @@ class StringList {
         return result;
     }
 
-    method int getLength(){
+    method int length(){
         return length;
     }
 

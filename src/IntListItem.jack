@@ -47,6 +47,4 @@ class IntListItem{
         do Memory.deAlloc(this);
         return;
     }
-
-    
 }
