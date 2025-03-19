@@ -3,7 +3,7 @@
 
 # Код
 1)
-- Нейминг   
+- Нейминг в аргументах методов  
 class StringListItem  
 class CharListItem   
 class IntListItem  
