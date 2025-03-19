@@ -6,7 +6,7 @@
 - Нейминг   
 class StringListItem  
 class CharListItem   
-class IntListItem
+class IntListItem  
 class Constructor(17 строка)
 - class Main  
 "while (((key < 139) | (key > 139)) & ((key < 140) | (key > 140))) { // while (key != 'DEL' & key != 'ESC')"  
