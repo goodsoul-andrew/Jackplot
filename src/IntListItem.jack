@@ -4,11 +4,11 @@ class IntListItem{
     field IntListItem prev;
     field int index;
 
-    constructor IntListItem new(int d, IntListItem n, IntListItem p, int i){
-        let data = d;
-        let next = n;
-        let prev = p;
-        let index = i;
+    constructor IntListItem new(int data_, IntListItem next_, IntListItem prev_, int index_){
+        let data = data_;
+        let next = next_;
+        let prev = prev_;
+        let index = index_;
         return this;
     }
 
@@ -24,18 +24,18 @@ class IntListItem{
         return prev;
     }
 
-    method void setNext(IntListItem n){
-        let next = n;
+    method void setNext(IntListItem next_){
+        let next = next_;
         return;
     }
 
-    method void setPrev(IntListItem n){
-        let next = n;
+    method void setPrev(IntListItem prev_){
+        let prev = prev_;
         return;
     }
 
-    method void setData(int d){
-        let data = d;
+    method void setData(int data_){
+        let data = data_;
         return;
     }
 

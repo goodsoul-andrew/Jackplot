@@ -49,16 +49,16 @@ class IntList {
         return;
     }
 
-    method void changeAtIndex(int i, int changed_data){
+    method void changeAtIndex(int index, int changed_data){
         var IntListItem current;
         var int current_index;
 
         let current = start;
         let current_index = 0;
-        if (i > length | i = length){
+        if (index > length | index = length){
             return;
         }
-        while(current_index < i){
+        while(current_index < index){
             let current = current.getNext();
             let current_index = current_index + 1;
         }
@@ -66,16 +66,16 @@ class IntList {
         return;
     }
 
-    method int takeAtIndex(int i){
+    method int takeAtIndex(int index){
         var IntListItem current;
         var int current_index;
 
         let current = start;
         let current_index = 0;
-        if (i > length | i = length){
+        if (index > length | index = length){
             do Sys.error(15);
         }
-        while(current_index < i){
+        while(current_index < index){
             let current = current.getNext();
             let current_index = current_index + 1;
         }
