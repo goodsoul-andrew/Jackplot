@@ -4,11 +4,11 @@ class StringListItem{
     field StringListItem prev;
     field int index;
 
-    constructor StringListItem new(String d, StringListItem n, StringListItem p, int i){
-        let data = d;
-        let next = n;
-        let prev = p;
-        let index = i;
+    constructor StringListItem new(String data_, StringListItem next_, StringListItem prev_, int index_){
+        let data = data_;
+        let next = next_;
+        let prev = prev_;
+        let index = index_;
         return this;
     }
 
@@ -24,18 +24,18 @@ class StringListItem{
         return prev;
     }
 
-    method void setNext(StringListItem n){
-        let next = n;
+    method void setNext(StringListItem next_){
+        let next = next_;
         return;
     }
 
-    method void setPrev(StringListItem n){
-        let next = n;
+    method void setPrev(StringListItem prev_)){
+        let prev = prev_;
         return;
     }
 
-    method void setData(String d){
-        let data = d;
+    method void setData(String data_){
+        let data = data_;
         return;
     }
 

@@ -49,16 +49,16 @@ class StringList {
         return;
     }
 
-    method void changeAtIndex(int i, String changed_data){
+    method void changeAtIndex(int index, String changed_data){
         var StringListItem current;
         var int current_index;
 
         let current = start;
         let current_index = 0;
-        if (i > length | i = length){
+        if (index > length | index = length){
             return;
         }
-        while(current_index < i){
+        while(current_index < index){
             let current = current.getNext();
             let current_index = current_index + 1;
         }
@@ -66,16 +66,16 @@ class StringList {
         return;
     }
 
-    method String takeAtIndex(int i){
+    method String takeAtIndex(int index){
         var StringListItem current;
         var int current_index;
 
         let current = start;
         let current_index = 0;
-        if (i > length | i = length){
+        if (index > length | index = length){
             do Sys.error(15);
         }
-        while(current_index < i){
+        while(current_index < index){
             let current = current.getNext();
             let current_index = current_index + 1;
         }
