@@ -10,16 +10,16 @@ class Parser{
         let multiplier = 0;
         let degree = 0;
         let i = 0;
-        let term = sm.Replace(term, "X", "x");
-        let term = sm.Replace(term, "-x", "-1x");
-        if (sm.Contains(term, "x")){
-            if (sm.Contains(term, "x^")){
-                let parts = sm.Split(term, "x^");
+        let term = sm.replace(term, "X", "x");
+        let term = sm.replace(term, "-x", "-1x");
+        if (sm.contains(term, "x")){
+            if (sm.contains(term, "x^")){
+                let parts = sm.split(term, "x^");
                 let str = parts[1];
                 let degree = str.intValue();
             }
             else{
-                let parts = sm.Split(term, "x");
+                let parts = sm.split(term, "x");
                 let str = parts[1];
                 let degree = 1;
             }
@@ -49,10 +49,10 @@ class Parser{
 
         let result_list = IntList.new();
         let result_len = 0;
-        let str = sm.Replace(input, " ", "");
-        let str = sm.Replace(str, "-", "+-");
-        let terms_len = sm.Count(str, "+") + 1;
-        let terms = sm.Split(str, "+");
+        let str = sm.replace(input, " ", "");
+        let str = sm.replace(str, "-", "+-");
+        let terms_len = sm.count(str, "+") + 1;
+        let terms = sm.split(str, "+");
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
@@ -85,10 +85,10 @@ class Parser{
 
         let result_list = IntList.new();
         let result_len = 0;
-        let str = sm.Replace(input, " ", "");
-        let str = sm.Replace(str, "-", "+-");
-        let terms_len = sm.Count(str, "+") + 1;
-        let terms = sm.Split(str, "+");
+        let str = sm.replace(input, " ", "");
+        let str = sm.replace(str, "-", "+-");
+        let terms_len = sm.count(str, "+") + 1;
+        let terms = sm.split(str, "+");
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
