@@ -10,7 +10,7 @@ class Main {
 
         let key = 0;
         let plot = Plot.new(0, 6, 511, 249);
-        while (~(key < 140)) {
+        while (~(key = 140)) {
             let input = Keyboard.readLine("");
             let calculator = Calculator.new(parser.parseToModifiedArray(input));
             let firstDraw = true;
