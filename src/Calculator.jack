@@ -26,6 +26,7 @@ class Calculator {
                     return result;
                }
                let result = result + (coefsArray[degree] * Calculator.pow(x, degree) / Calculator.pow(p, degree - 1));
+               //let result = result + (coefsArray[degree] * Calculator.powWithScale(x, degree, p));
                let degree = degree - 1;
           }
           return result;
@@ -43,6 +44,35 @@ class Calculator {
           while (index < degree) {
                let result = result * base;
                let index = index + 1;
+          }
+          return result;
+     }
+
+     function int powWithScale ( int base, int degree, int scale) {
+          var int index;
+          var int result;
+          var int scaleIndex;
+          
+          if (base = 0) {
+               return 0;
+          }
+
+          let index = 0;
+          let scaleIndex = 0;
+          let result = 1;
+          while (index < degree) {
+               if ((result > 0) | (result < 0)) {
+                    if ((32000 / Calculator.abs(result)) < base) {
+                         let result = result / scale;
+                         let scaleIndex = scaleIndex + 1;
+                    }
+               }
+               let result = result * base;
+               let index = index + 1;
+          }
+          while (scaleIndex < (degree - 1)) {
+               let result = result / scale;
+               let scaleIndex = scaleIndex + 1;
           }
           return result;
      }
