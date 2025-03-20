@@ -29,7 +29,7 @@ class StringListItem{
         return;
     }
 
-    method void setPrev(StringListItem prev_)){
+    method void setPrev(StringListItem prev_){
         let prev = prev_;
         return;
     }
