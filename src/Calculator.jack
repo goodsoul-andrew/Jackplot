@@ -61,7 +61,7 @@ class Calculator {
           let scaleIndex = 0;
           let result = 1;
           while (index < degree) {
-               if ((result > 0) | (result < 0)) {
+               if (~(result = 0)) {
                     if ((32000 / Calculator.abs(result)) < base) {
                          let result = result / scale;
                          let scaleIndex = scaleIndex + 1;
