@@ -10,13 +10,13 @@ class Main {
 
         let key = 0;
         let plot = Plot.new(0, 6, 511, 249);
-        while ((key < 140) | (key > 140)) {
+        while (~(key < 140)) {
             let input = Keyboard.readLine("");
             let calculator = Calculator.new(parser.parseToModifiedArray(input));
             let firstDraw = true;
             let scale = 20;
             let key = 0;
-            while (((key < 139) | (key > 139)) & ((key < 140) | (key > 140))) { // while (key != 'DEL' & key != 'ESC')
+            while ((~(key = 139)) & (~(key = 140))) { // while (key != 'DEL' & key != 'ESC')
                 let key = Keyboard.keyPressed();
                 if ((key = 65) | (key = 97) | (key = 130)) { // key == 'A' | key == 'a' | key == '←'
                     do plot.moveLeft(10);
