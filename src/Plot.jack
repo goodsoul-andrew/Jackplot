@@ -1,69 +1,89 @@
 // просто замеч
 class Plot {
-    field int x;
-    field int y;
+    field int startX;
+    field int startY;
     field int width;
     field int height;
-    field int midX;
-    field int midY;
     field int endX;
     field int endY;
     field int zeroX;
     field int zeroY;
 
     constructor Plot new(int x_, int y_, int width_, int height_) {
-        let x = x_;
-        let y = y_;
+        let startX = x_;
+        let startY = y_;
         let width = width_;
         let height = height_;
-        let midX = x + width / 2;
-        let midY = y + height / 2;
-        let endX = x + width;
-        let endY = y + height;
-        let zeroX = midX;
-        let zeroY = midY;
+        let endX = startX + width;
+        let endY = startY + height;
+        let zeroX = startX + width / 2;
+        let zeroY = height / 2;
         return this;
     }
 
     method void drawCross ( ) {
-        do Screen.drawLine(midX, y, midX, endY);
-        do Screen.drawLine(x, midY, endX, midY);
+        if (((zeroX - startX) > -1) & ((endX - zeroX) > -1)) {
+            do Screen.drawLine(zeroX, startY, zeroX, endY);
+        }
+        if (((zeroY - startY) > -1) & ((endY - zeroY) > -1)) {
+            do Screen.drawLine(startX, zeroY, endX, zeroY);
+        }
         return;
     }
 
     method void drawArrowUp (int posX, int posY, int length) {
         var int i;
+        var int arrowWidth;
 
         let i = 1;
-        while (i < 4) {
-            do Screen.drawLine(posX + i, posY + i, posX + i, posY + length + i);
-            do Screen.drawLine(posX - i, posY + i, posX - i, posY + length + i);
-            let i = i + 1;
+        let arrowWidth = 4;
+        if ((zeroX - startX) < arrowWidth) {
+            let arrowWidth = zeroX - startX;
+        }
+        if ((endX - zeroX) < arrowWidth) {
+            let arrowWidth = endX - zeroX;
+        }
+        if (arrowWidth > 0) {
+            while (i < arrowWidth) {
+                do Screen.drawLine(posX + i, posY + i, posX + i, posY + length + i);
+                do Screen.drawLine(posX - i, posY + i, posX - i, posY + length + i);
+                let i = i + 1;
+            }
         }
         return;
     }
 
     method void drawArrowRight (int posX, int posY, int length) {
         var int i;
+        var int arrowWidth;
         
         let i = 1;
-        while (i < 4) {
-            do Screen.drawLine(posX - i, posY + i, posX - i - length, posY + i);
-            do Screen.drawLine(posX - i, posY - i, posX - i - length, posY - i);
-            let i = i + 1;
+        let arrowWidth = 4;
+        if ((zeroY - startY) < arrowWidth) {
+            let arrowWidth = zeroY - startY;
+        }
+        if ((endY - zeroY) < arrowWidth) {
+            let arrowWidth = endY - zeroY;
+        }
+        if (arrowWidth > 0) {
+            while (i < arrowWidth) {
+                do Screen.drawLine(posX - i, posY + i, posX - i - length, posY + i);
+                do Screen.drawLine(posX - i, posY - i, posX - i - length, posY - i);
+                let i = i + 1;
+            }
         }
         return;
     }
 
     method void drawBase ( ) {
         do drawCross();
-        do drawArrowUp(midX, y, 10);
-        do drawArrowRight(x + width, midY, 10);
+        do drawArrowUp(zeroX, startY, 10);
+        do drawArrowRight(startX + width, zeroY, 10);
         return;
     }
 
     method boolean isOnScreen ( int px, int py ) {
-        return (x < px) & (px < endX) & (y < py) & (py < endY);
+        return (startX < px) & (px < endX) & (startY < py) & (py < endY);
     }
 
     method void drawFunction (int scale, Calculator calculator) {
@@ -72,7 +92,7 @@ class Plot {
         var int matX;
         var int matY;
         
-        let actualX = x;
+        let actualX = startX;
         while (actualX < endX) {
             let matX = actualX - zeroX;
             let matY = calculator.calculateYInScale(matX, scale);
