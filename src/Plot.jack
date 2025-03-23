@@ -8,8 +8,9 @@ class Plot {
     field int endY;
     field int zeroX;
     field int zeroY;
+    field int scale;
 
-    constructor Plot new(int x_, int y_, int width_, int height_) {
+    constructor Plot new(int x_, int y_, int width_, int height_, int scale_) {
         let startX = x_;
         let startY = y_;
         let width = width_;
@@ -18,6 +19,7 @@ class Plot {
         let endY = startY + height;
         let zeroX = startX + width / 2;
         let zeroY = height / 2;
+        let scale = scale_;
         return this;
     }
 
@@ -86,7 +88,7 @@ class Plot {
         return (startX < px) & (px < endX) & (startY < py) & (py < endY);
     }
 
-    method void drawFunction (int scale, Calculator calculator) {
+    method void drawFunction (Calculator calculator) {
         var int actualX;
         var int actualY;
         var int matX;
@@ -122,6 +124,16 @@ class Plot {
 
     method void moveDown (int s) {
         let zeroY = zeroY - s;
+        return;
+    }
+
+    method void upScale(int s) {
+        let scale = scale + s;
+        return;
+    }
+
+    method void downScale(int s) {
+        let scale = scale - s;
         return;
     }
 }

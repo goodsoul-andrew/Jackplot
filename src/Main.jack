@@ -8,12 +8,11 @@ class Main {
         var Calculator calculator;
 
         let key = 0;
-        let plot = Plot.new(0, 6, 511, 249);
+        let plot = Plot.new(0, 6, 511, 249, 20);
         while (~(key = 140)) {
             let input = Keyboard.readLine("");
             let calculator = Calculator.new(Parser.parseToModifiedArray(input));
             let firstDraw = true;
-            let scale = 20;
             let key = 0;
             while ((~(key = 139)) & (~(key = 140))) { // while (key != 'DEL' & key != 'ESC')
                 let key = Keyboard.keyPressed();
@@ -30,16 +29,16 @@ class Main {
                     do plot.moveDown(10);
                 }
                 if (key = 43) { // key == '+'
-                    let scale = scale + 10;
+                    do plot.upScale(10);
                 }
                 if ((key = 45) & (scale > 10)) { // key == '-'
-                    let scale = scale - 10;
+                    do plot.downScale(10);
                 }
 
                 if ((key > 0) | firstDraw) {
                     do Screen.clearScreen();
                     do plot.drawBase();
-                    do plot.drawFunction(scale, calculator);
+                    do plot.drawFunction(calculator);
                 }
 
                 if (key = 139) { // key == 'DEL' новый график
