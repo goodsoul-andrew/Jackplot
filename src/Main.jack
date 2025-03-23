@@ -1,5 +1,5 @@
 class Main {
-    function void main ( ) {
+    function void main () {
         var String input;
         var Plot plot;
         var int scale;

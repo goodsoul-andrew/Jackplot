@@ -23,7 +23,7 @@ class Plot {
         return this;
     }
 
-    method void drawCross ( ) {
+    method void drawCross () {
         if (((zeroX - startX) > -1) & ((endX - zeroX) > -1)) {
             do Screen.drawLine(zeroX, startY, zeroX, endY);
         }
@@ -77,7 +77,7 @@ class Plot {
         return;
     }
 
-    method void drawBase ( ) {
+    method void drawBase () {
         do drawCross();
         do drawArrowUp(zeroX, startY, 10);
         do drawArrowRight(startX + width, zeroY, 10);
