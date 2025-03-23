@@ -28,7 +28,7 @@ class Main {
                     if ((key = 83) | (key = 115) | (key = 133)) { // key == 'S' | key == 's' | key == '↓'
                         do plot.moveDown(10);
                     }
-                    if (key = 43) { // key == '+'
+                    if ((key = 43) | (key = 61)) { // key == '+'
                         do plot.upScale(10);
                     }
                     if ((key = 45)) { // key == '-'
