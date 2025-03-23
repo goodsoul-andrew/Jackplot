@@ -1,6 +1,5 @@
 class Main {
     function void main ( ) {
-        var Parser parser;
         var String input;
         var Plot plot;
         var int scale;
@@ -12,7 +11,7 @@ class Main {
         let plot = Plot.new(0, 6, 511, 249);
         while (~(key = 140)) {
             let input = Keyboard.readLine("");
-            let calculator = Calculator.new(parser.parseToModifiedArray(input));
+            let calculator = Calculator.new(Parser.parseToModifiedArray(input));
             let firstDraw = true;
             let scale = 20;
             let key = 0;

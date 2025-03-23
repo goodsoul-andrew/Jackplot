@@ -1,7 +1,6 @@
 class Parser{
   
-    method Array parseTerm(String term){
-        var StringMethods sm;
+    function Array parseTerm(String term){
         var Array result;
         var Array parts;
         var String str;
@@ -10,16 +9,16 @@ class Parser{
         let multiplier = 0;
         let degree = 0;
         let i = 0;
-        let term = sm.replace(term, "X", "x");
-        let term = sm.replace(term, "-x", "-1x");
-        if (sm.contains(term, "x")){
-            if (sm.contains(term, "x^")){
-                let parts = sm.split(term, "x^");
+        let term = StringMethods.replace(term, "X", "x");
+        let term = StringMethods.replace(term, "-x", "-1x");
+        if (StringMethods.contains(term, "x")){
+            if (StringMethods.contains(term, "x^")){
+                let parts = StringMethods.split(term, "x^");
                 let str = parts[1];
                 let degree = str.intValue();
             }
             else{
-                let parts = sm.split(term, "x");
+                let parts = StringMethods.split(term, "x");
                 let str = parts[1];
                 let degree = 1;
             }
@@ -40,8 +39,7 @@ class Parser{
         return result;
     }
 
-    method Array parse(String input){
-        var StringMethods sm;
+    function Array parse(String input){
         var Array parts, terms, result;
         var IntList result_list;
         var String term, str;
@@ -49,16 +47,16 @@ class Parser{
 
         let result_list = IntList.new();
         let result_len = 0;
-        let str = sm.replace(input, " ", "");
-        let str = sm.replace(str, "-", "+-");
-        let terms_len = sm.count(str, "+") + 1;
-        let terms = sm.split(str, "+");
+        let str = StringMethods.replace(input, " ", "");
+        let str = StringMethods.replace(str, "-", "+-");
+        let terms_len = StringMethods.count(str, "+") + 1;
+        let terms = StringMethods.split(str, "+");
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
             let term = terms[i];
             if (term.length() > 0){
-                let parts = parseTerm(term);
+                let parts = Parser.parseTerm(term);
                 let multiplier = parts[0];
                 let degree = parts[1];
                 while(~(degree < result_len)){
@@ -75,8 +73,7 @@ class Parser{
         return result;
     }
 
-    method ModifiedArray parseToModifiedArray ( String input ) {
-        var StringMethods sm;
+    function ModifiedArray parseToModifiedArray ( String input ) {
         var Array parts, terms;
         var ModifiedArray result;
         var IntList result_list;
@@ -85,16 +82,16 @@ class Parser{
 
         let result_list = IntList.new();
         let result_len = 0;
-        let str = sm.replace(input, " ", "");
-        let str = sm.replace(str, "-", "+-");
-        let terms_len = sm.count(str, "+") + 1;
-        let terms = sm.split(str, "+");
+        let str = StringMethods.replace(input, " ", "");
+        let str = StringMethods.replace(str, "-", "+-");
+        let terms_len = StringMethods.count(str, "+") + 1;
+        let terms = StringMethods.split(str, "+");
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
             let term = terms[i];
             if (term.length() > 0){
-                let parts = parseTerm(term);
+                let parts = Parser.parseTerm(term);
                 let multiplier = parts[0];
                 let degree = parts[1];
                 while(~(degree < result_len)){
