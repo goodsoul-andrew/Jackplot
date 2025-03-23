@@ -2,7 +2,6 @@ class Main {
     function void main () {
         var String input;
         var Plot plot;
-        var int scale;
         var char key;
         var boolean firstDraw;
         var Calculator calculator;
