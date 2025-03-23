@@ -1,7 +1,7 @@
 class Parser{
   
-    function Array parseTerm(String term){
-        var Array result;
+    function Array parseTerm(String termStr){
+        var Term term;
         var Array parts;
         var String str;
         var int multiplier, degree, i;
@@ -9,16 +9,16 @@ class Parser{
         let multiplier = 0;
         let degree = 0;
         let i = 0;
-        let term = StringMethods.replace(term, "X", "x");
-        let term = StringMethods.replace(term, "-x", "-1x");
-        if (StringMethods.contains(term, "x")){
-            if (StringMethods.contains(term, "x^")){
-                let parts = StringMethods.split(term, "x^");
+        let termStr = StringMethods.replace(termStr, "X", "x");
+        let termStr = StringMethods.replace(termStr, "-x", "-1x");
+        if (StringMethods.contains(termStr, "x")){
+            if (StringMethods.contains(termStr, "x^")){
+                let parts = StringMethods.split(termStr, "x^");
                 let str = parts[1];
                 let degree = str.intValue();
             }
             else{
-                let parts = StringMethods.split(term, "x");
+                let parts = StringMethods.split(termStr, "x");
                 let str = parts[1];
                 let degree = 1;
             }
@@ -31,18 +31,19 @@ class Parser{
             }
         }
         else{
-            let multiplier = term.intValue();
+            let multiplier = termStr.intValue();
         }
-        let result = Array.new (2);
-        let result[0] = multiplier;
-        let result[1] = degree;
-        return result;
+        let term = Term.new(multiplier, degree);
+        do parts.dispose();
+        do str.dispose();
+        return term;
     }
 
     function Array parse(String input){
-        var Array parts, terms, result;
+        var Term term;
+        var Array terms, result;
         var IntList result_list;
-        var String term, str;
+        var String termStr, str;
         var int multiplier, degree, i, terms_len, result_len;
 
         let result_list = IntList.new();
@@ -54,11 +55,11 @@ class Parser{
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
-            let term = terms[i];
-            if (term.length() > 0){
-                let parts = Parser.parseTerm(term);
-                let multiplier = parts[0];
-                let degree = parts[1];
+            let termStr = terms[i];
+            if (termStr.length() > 0){
+                let term = Parser.parseTerm(termStr);
+                let multiplier = term.getMultiplier();
+                let degree = term.getDegree();
                 while(~(degree < result_len)){
                     do result_list.add(0);
                     let result_len = result_len + 1;
@@ -69,15 +70,20 @@ class Parser{
             let i = i + 1;
         }
         let result = result_list.toArray();
+        do term.dispose();
+        do terms.dispose();
         do result_list.dispose();
+        do termStr.dispose();
+        do str.dispose();
         return result;
     }
 
     function ModifiedArray parseToModifiedArray ( String input ) {
-        var Array parts, terms;
+        var Term term;
+        var Array terms;
         var ModifiedArray result;
         var IntList result_list;
-        var String term, str;
+        var String termStr, str;
         var int multiplier, degree, i, terms_len, result_len;
 
         let result_list = IntList.new();
@@ -89,11 +95,11 @@ class Parser{
         let i = 0;
         let result_len = 0;
         while(i < terms_len){
-            let term = terms[i];
-            if (term.length() > 0){
-                let parts = Parser.parseTerm(term);
-                let multiplier = parts[0];
-                let degree = parts[1];
+            let termStr = terms[i];
+            if (termStr.length() > 0){
+                let term = Parser.parseTerm(termStr);
+                let degree = term.getDegree();
+                let multiplier = term.getMultiplier();
                 while(~(degree < result_len)){
                     do result_list.add(0);
                     let result_len = result_len + 1;
@@ -104,7 +110,11 @@ class Parser{
             let i = i + 1;
         }
         let result = result_list.toModifiedArray();
+        do term.dispose();
+        do terms.dispose();
         do result_list.dispose();
+        do termStr.dispose();
+        do str.dispose();
         return result;
     }
 }
