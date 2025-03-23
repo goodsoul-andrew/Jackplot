@@ -22,6 +22,27 @@ class StringMethods {
         return false;
     }
 
+    function boolean equals(String a, String b){
+        var int aLength, bLength;
+        var int i;
+
+        let aLength = a.length();
+        let bLength = b.length();
+
+        if (~(aLength = bLength)) {
+            return false;
+        }
+
+        let i = 0;
+        while (i < aLength) {
+            if (~(a.charAt(i) = b.charAt(i))) {
+                return false;
+            }
+            let i = i + 1;
+        }
+        return true;
+    }
+
     function int count(String input, String required){
         var int i, j, input_length, required_length, count;
 

@@ -1,13 +1,12 @@
 class Parser{
 
     function boolean canParse(String input){
-        var String valid_chars;
-        var int i;
-        var int length;
+        var String valid_chars, valid_chars_after_x, symbol;
+        var int i, length;
         var boolean result;
-        var String symbol;
 
         let valid_chars = "+-^xX0123456789";
+        let valid_chars_after_x = "+-^";
         let i = 0;
         let input = StringMethods.replace(input, " ", "");
         let length = input.length();
@@ -20,8 +19,17 @@ class Parser{
             if (~(StringMethods.contains(valid_chars, symbol))){
                 return false;
             }
+            if ((StringMethods.equals(symbol, "x")) & (i < (length - 1))){
+                do symbol.setCharAt(0, input.charAt(i + 1));
+                if (~(StringMethods.contains(valid_chars_after_x, symbol))){
+                    return false;
+                }
+            }
             let i = i + 1;
         }
+        do valid_chars.dispose();
+        do valid_chars_after_x.dispose();
+        do symbol.dispose();
         return true;
     }
   
