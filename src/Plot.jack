@@ -24,20 +24,29 @@ class Plot {
 
     method void drawCross () {
         if (((zeroX - startX) > -1) & ((endX - zeroX) > -1)) {
-            do Screen.drawLine(zeroX, startY, zeroX, endY);
+            do Screen.drawLine(zeroX, startY, zeroX, endY); // y = 0
         }
         if (((zeroY - startY) > -1) & ((endY - zeroY) > -1)) {
-            do Screen.drawLine(startX, zeroY, endX, zeroY);
+            do Screen.drawLine(startX, zeroY, endX, zeroY); // x = 0
         }
         return;
     }
 
     method void drawOnes() {
-        if (((zeroX + scale - startX) > -1) & ((endX - zeroX - scale) > -1) & ((zeroY - 10 - startY) > -1) & ((endY - zeroY - 10) > -1)) {
-            do Screen.drawLine(zeroX + scale, zeroY - 10, zeroX + scale, zeroY + 10);
+        var int length;
+
+        let length = 5;
+        if (((zeroX + scale - startX) > -1) & ((endX - zeroX - scale) > -1) & ((zeroY - length - startY) > -1) & ((endY - zeroY - length) > -1)) {
+            do Screen.drawLine(zeroX + scale, zeroY - length, zeroX + scale, zeroY + length); // x = 1
         }
-        if (((zeroY - scale - startX) > -1) & ((endY - zeroY - scale) > -1) & ((zeroX - 10 - startX) > -1) & ((endX - zeroX - 10) > -1)) {
-            do Screen.drawLine(zeroX - 10, zeroY - scale, zeroX + 10, zeroY - scale);
+        if (((zeroY - scale - startX) > -1) & ((endY - zeroY + scale) > -1) & ((zeroX - length - startX) > -1) & ((endX - zeroX - length) > -1)) {
+            do Screen.drawLine(zeroX - length, zeroY - scale, zeroX + length, zeroY - scale); // y = 1
+        }
+        if (((zeroX - scale - startX) > -1) & ((endX - zeroX + scale) > -1) & ((zeroY - length - startY) > -1) & ((endY - zeroY - length) > -1)) {
+            do Screen.drawLine(zeroX - scale, zeroY - length, zeroX - scale, zeroY + length); // x = -1
+        }
+        if (((zeroY + scale - startX) > -1) & ((endY - zeroY - scale) > -1) & ((zeroX - length - startX) > -1) & ((endX - zeroX - length) > -1)) {
+            do Screen.drawLine(zeroX - length, zeroY + scale, zeroX + length, zeroY + scale); // y = -1
         }
         return;
     }
