@@ -9,6 +9,7 @@ class Main {
         let key = 0;
         let plot = Plot.new(0, 6, 511, 249, 20);
         while (~(key = 140)) {
+            do Output.printString("y=");
             let input = Keyboard.readLine("");
             if (Parser.canParse(input)){
                 let calculator = Calculator.new(Parser.parseToModifiedArray(input));
@@ -36,10 +37,6 @@ class Main {
                     }
 
                     if ((key > 0) | firstDraw) {
-                        do Screen.clearScreen();
-                        do Output.moveCursor(0, 0);
-                        do Output.printString("y=");
-                        do Output.printString(input);
                         do plot.drawBase();
                         do plot.drawFunction(calculator);
                     }
