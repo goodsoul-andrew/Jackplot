@@ -1,0 +1,23 @@
+class Term {
+    field int multiplier;
+    field int degree;
+
+    constructor Term new(int multiplier_, int degree_){
+        let degree = degree_;
+        let multiplier = multiplier_;
+        return this;
+    }
+
+    method int getDegree(){
+        return degree;
+    }
+
+    method int getMultiplier(){
+        return multiplier;
+    }
+
+    method void dispose(){
+        do Memory.deAlloc(this);
+        return;
+    }
+}
