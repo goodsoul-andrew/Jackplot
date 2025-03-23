@@ -21,8 +21,8 @@ class Calculator {
                     let result = result + (coefsArray[degree] * p);
                     return result;
                }
-               let result = result + (coefsArray[degree] * MathExtension.pow(x, degree) / MathExtension.pow(p, degree - 1));
-               //let result = result + (coefsArray[degree] * MathExtension.powWithScale(x, degree, p));
+               //let result = result + (coefsArray[degree] * MathExtension.pow(x, degree) / MathExtension.pow(p, degree - 1));
+               let result = result + (coefsArray[degree] * MathExtension.powWithScale(x, degree, p));
                let degree = degree - 1;
           }
           return result;

@@ -12,33 +12,44 @@ class MathExtension {
           return result;
      }
 
-     function int powWithScale ( int base, int degree, int scale) {
+     function int powWithScale (int base, int degree, int scale) {
           var int index;
           var int result;
+          var int sign;
+          var int baseNew;
           var int scaleIndex;
           
           if (base = 0) {
                return 0;
           }
-
+          
+          let baseNew = MathExtension.abs(base);
+          let sign = 1;
+          if (MathExtension.mod(degree, 2) = 0) {
+               let sign = 1;
+          }
+          if ((MathExtension.mod(degree, 2) = 1) & (base < 0)) {
+               let sign = -1;
+          }
           let index = 0;
           let scaleIndex = 0;
           let result = 1;
           while (index < degree) {
-               if (~(result = 0)) {
-                    if ((32000 / MathExtension.abs(result)) < base) {
-                         let result = result / scale;
-                         let scaleIndex = scaleIndex + 1;
-                    }
+               if (result = 0) {
+                    return 0;
                }
-               let result = result * base;
+               if ((32767 / MathExtension.abs(result)) < baseNew) {
+                    let result = result / scale;
+                    let scaleIndex = scaleIndex + 1;
+               }
+               let result = result * baseNew;
                let index = index + 1;
           }
           while (scaleIndex < (degree - 1)) {
                let result = result / scale;
                let scaleIndex = scaleIndex + 1;
           }
-          return result;
+          return sign * result;
      }
 
      function int abs(int x) {
@@ -46,6 +57,22 @@ class MathExtension {
             return -x;
         }
         return x;
+     }
+
+     function int sign(int x) {
+          if (x < 0) {
+               return -1;
+          }
+          if (x > 0) {
+               return 1;
+          }
+          return 0;
+     }
+
+     function int mod(int x, int m) {
+          var int q;
+          let q = x / m;
+          return x - (m * q);
      }
 
 }
