@@ -37,6 +37,9 @@ class Main {
 
                     if ((key > 0) | firstDraw) {
                         do Screen.clearScreen();
+                        do Output.moveCursor(0, 0);
+                        do Output.printString("y=");
+                        do Output.printString(input);
                         do plot.drawBase();
                         do plot.drawFunction(calculator);
                     }
