@@ -10,42 +10,52 @@ class Main {
         let plot = Plot.new(0, 6, 511, 249, 20);
         while (~(key = 140)) {
             let input = Keyboard.readLine("");
-            let calculator = Calculator.new(Parser.parseToModifiedArray(input));
-            let firstDraw = true;
-            let key = 0;
-            while ((~(key = 139)) & (~(key = 140))) { // while (key != 'DEL' & key != 'ESC')
-                let key = Keyboard.keyPressed();
-                if ((key = 65) | (key = 97) | (key = 130)) { // key == 'A' | key == 'a' | key == '←'
-                    do plot.moveLeft(10);
-                }
-                if ((key = 68) | (key = 100) | (key = 132)) { // key == 'D' | key == 'd' | key == '→'
-                    do plot.moveRight(10);
-                }
-                if ((key = 87) | (key = 119) | (key = 131)) { // key == 'W'| key == 'w' | key == '↑'
-                    do plot.moveUp(10);
-                }
-                if ((key = 83) | (key = 115) | (key = 133)) { // key == 'S' | key == 's' | key == '↓'
-                    do plot.moveDown(10);
-                }
-                if (key = 43) { // key == '+'
-                    do plot.upScale(10);
-                }
-                if ((key = 45)) { // key == '-'
-                    do plot.downScale(10);
-                }
+            if (Parser.canParse(input)){
+                let calculator = Calculator.new(Parser.parseToModifiedArray(input));
+                let firstDraw = true;
+                let key = 0;
+                while ((~(key = 139)) & (~(key = 140))) { // while (key != 'DEL' & key != 'ESC')
+                    let key = Keyboard.keyPressed();
+                    if ((key = 65) | (key = 97) | (key = 130)) { // key == 'A' | key == 'a' | key == '←'
+                        do plot.moveLeft(10);
+                    }
+                    if ((key = 68) | (key = 100) | (key = 132)) { // key == 'D' | key == 'd' | key == '→'
+                        do plot.moveRight(10);
+                    }
+                    if ((key = 87) | (key = 119) | (key = 131)) { // key == 'W'| key == 'w' | key == '↑'
+                        do plot.moveUp(10);
+                    }
+                    if ((key = 83) | (key = 115) | (key = 133)) { // key == 'S' | key == 's' | key == '↓'
+                        do plot.moveDown(10);
+                    }
+                    if (key = 43) { // key == '+'
+                        do plot.upScale(10);
+                    }
+                    if ((key = 45)) { // key == '-'
+                        do plot.downScale(10);
+                    }
 
-                if ((key > 0) | firstDraw) {
-                    do Screen.clearScreen();
-                    do plot.drawBase();
-                    do plot.drawFunction(calculator);
-                }
+                    if ((key > 0) | firstDraw) {
+                        do Screen.clearScreen();
+                        do plot.drawBase();
+                        do plot.drawFunction(calculator);
+                    }
 
-                if (key = 139) { // key == 'DEL' новый график
-                    do calculator.dispose();
-                    do input.dispose();
-                    do Output.moveCursor(0, 0);
+                    if (key = 139) { // key == 'DEL' новый график
+                        do calculator.dispose();
+                        do input.dispose();
+                        do Output.moveCursor(0, 0);
+                    }
+                    let firstDraw = false;
                 }
-                let firstDraw = false;
+            }
+            else{
+                do Output.printString("invalid expression");
+                let key = 0;
+                while ((~(key = 139)) & (~(key = 140))) { // while (key != 'DEL' & key != 'ESC')
+                    let key = Keyboard.keyPressed();
+                }
+                do Output.moveCursor(0, 0);
             }
             do Screen.clearScreen();
         }

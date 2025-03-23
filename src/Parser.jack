@@ -1,4 +1,29 @@
 class Parser{
+
+    function boolean canParse(String input){
+        var String valid_chars;
+        var int i;
+        var int length;
+        var boolean result;
+        var String symbol;
+
+        let valid_chars = "+-^xX0123456789";
+        let i = 0;
+        let input = StringMethods.replace(input, " ", "");
+        let length = input.length();
+        if (length = 0){
+            return false;
+        }
+        let symbol = "a";
+        while (i < length){
+            do symbol.setCharAt(0, input.charAt(i));
+            if (~(StringMethods.contains(valid_chars, symbol))){
+                return false;
+            }
+            let i = i + 1;
+        }
+        return true;
+    }
   
     function Array parseTerm(String termStr){
         var Term term;
