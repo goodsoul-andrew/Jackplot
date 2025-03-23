@@ -31,7 +31,7 @@ class Main {
                 if (key = 43) { // key == '+'
                     do plot.upScale(10);
                 }
-                if ((key = 45) & (scale > 10)) { // key == '-'
+                if ((key = 45)) { // key == '-'
                     do plot.downScale(10);
                 }
 

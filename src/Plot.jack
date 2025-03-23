@@ -1,4 +1,3 @@
-// просто замеч
 class Plot {
     field int startX;
     field int startY;
@@ -29,6 +28,16 @@ class Plot {
         }
         if (((zeroY - startY) > -1) & ((endY - zeroY) > -1)) {
             do Screen.drawLine(startX, zeroY, endX, zeroY);
+        }
+        return;
+    }
+
+    method void drawOnes() {
+        if (((zeroX + scale - startX) > -1) & ((endX - zeroX - scale) > -1) & ((zeroY - 10 - startY) > -1) & ((endY - zeroY - 10) > -1)) {
+            do Screen.drawLine(zeroX + scale, zeroY - 10, zeroX + scale, zeroY + 10);
+        }
+        if (((zeroY - scale - startX) > -1) & ((endY - zeroY - scale) > -1) & ((zeroX - 10 - startX) > -1) & ((endX - zeroX - 10) > -1)) {
+            do Screen.drawLine(zeroX - 10, zeroY - scale, zeroX + 10, zeroY - scale);
         }
         return;
     }
@@ -79,6 +88,7 @@ class Plot {
 
     method void drawBase () {
         do drawCross();
+        do drawOnes();
         do drawArrowUp(zeroX, startY, 10);
         do drawArrowRight(startX + width, zeroY, 10);
         return;
@@ -133,7 +143,9 @@ class Plot {
     }
 
     method void downScale(int s) {
-        let scale = scale - s;
+        if ((scale - s) > 0) {
+            let scale = scale - s;
+        }
         return;
     }
 }
